@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837657491885",
+    "project_id": "ptactise-app",
+    "storage_bucket": "ptactise-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837657491885:android:274cf1fc002f1ad42b8924",
+        "android_client_info": {
+          "package_name": "com.example.practise_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDplvscJWZyYmNQaDVpwnKsqMoAsnSurrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
