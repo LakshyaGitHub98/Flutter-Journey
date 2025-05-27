@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practise_app/files/SplashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,7 +7,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Demo Home Page'),
+      home:SplashScreen(),
     );
   }
 }
@@ -30,6 +31,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _increaseCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +46,48 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body:Column(
-        children: [
-          Center(
-            child: Container(
-              color: Colors.blue,
-              child:Text("Welcome to My First App",style: TextStyle(color:Colors.white,height: 20),),
+      body: Center( // Ensures everything is centralized
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(12.0),
+                boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
+              ),
+              child: const Text(
+                "Welcome to My First App",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24, // Larger font size for emphasis
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-          ),
-          Center(
-            child: Container(
-              child: Text("Show your love ❤️"),
+            const SizedBox(height: 20),
+            TextButton(
+              onPressed: _increaseCounter,
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.all(12.0),
+                foregroundColor: Colors.deepPurple,
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              child: const Text("Show your love ❤️"),
             ),
-          )
-        ],
+            const SizedBox(height: 20),
+            Text(
+              "❤️ Count: $_counter",
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _increaseCounter,
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.favorite, color: Colors.white),
       ),
     );
   }
