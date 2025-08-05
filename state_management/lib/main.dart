@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'list_map_provider.dart';
-import 'list_page.dart';
-import 'counter_provider.dart';
+import 'numberProvider.dart';
+import 'themeProvider.dart';
+import 'homescreen.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ItemProvider()),
-        ChangeNotifierProvider(create: (context) => CounterProvider()),
+        ChangeNotifierProvider(create: (_) => NumberProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CRUD with Provider',
-      theme: ThemeData(primarySwatch: Colors.teal),
-      home: ListPage(),
+
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, _) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Provider Demo',
+          theme: themeProvider.themeData,
+          home: const MyHomePage(),
+        );
+      },
     );
   }
 }
