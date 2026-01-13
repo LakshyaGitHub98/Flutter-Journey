@@ -9,6 +9,8 @@ class ProfileProvider with ChangeNotifier {
   int get age => _age;
   String get gender => _gender;
 
+  bool get isLoggedIn => _name.isNotEmpty;
+
   void setProfile(String name, int age, String gender) {
     _name = name;
     _age = age;
@@ -16,12 +18,18 @@ class ProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setProfileFromStorage(Map<String, dynamic> data) {
+  void setProfileFromStorage(Map<String, dynamic>? data) {
+    if (data == null) return;
     _name = data["name"] ?? "";
     _age = data["age"] ?? 0;
     _gender = data["gender"] ?? "";
     notifyListeners();
   }
 
-  bool get isLoggedIn => _name.isNotEmpty;
+  void logout() {
+    _name = "";
+    _age = 0;
+    _gender = "";
+    notifyListeners();
+  }
 }

@@ -14,9 +14,8 @@ import 'helpers/profile_storage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Load saved data
   final tasks = await TaskStorage.loadTasks();
-  final profileData = await ProfileStorage.loadProfile();
+  final profileData = await ProfileStorage.getProfile();
   final isDarkMode = await ThemeProvider.loadTheme();
 
   runApp(
